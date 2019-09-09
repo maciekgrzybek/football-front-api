@@ -2,6 +2,7 @@ import 'antd/dist/antd.css';
 
 import Header from '../header/Header';
 import Main from '../main/Main';
+import EventsList from '../events-list/EventsList';
 
 import './App.css';
 
@@ -11,7 +12,7 @@ function App() {
     <div className="page-wrapper">
       <Header />
       <Main>
-        list
+        <EventsList />
       </Main>
     </div>
   );
