@@ -10,5 +10,6 @@ function Main({ children }) {
 
 Main.propTypes = {
   children: PropTypes.element.isRequired,
-}
+};
+
 export default Main;
