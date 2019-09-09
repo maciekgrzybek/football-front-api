@@ -1,16 +1,20 @@
-import { Component } from 'react';
+import 'antd/dist/antd.css';
+
+import Header from '../header/Header';
+import Main from '../main/Main';
+
 import './App.css';
 
-export default class App extends Component {
-  state = {
-    name: 'react-footbal-api-front',
-  };
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Welcome to {this.state.name}</h1>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="page-wrapper">
+      <Header />
+      <Main>
+        list
+      </Main>
+    </div>
+  );
 }
+
+export default App;
