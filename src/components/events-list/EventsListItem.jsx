@@ -1,4 +1,5 @@
 import { List } from 'antd';
+import PropTypes from 'prop-types';
 
 function EventsListItem({ data }) {
   return (
@@ -7,5 +8,9 @@ function EventsListItem({ data }) {
     </List.Item>
   );
 }
+
+EventsListItem.propTypes = {
+  data: PropTypes.object,
+};
 
 export default EventsListItem;
