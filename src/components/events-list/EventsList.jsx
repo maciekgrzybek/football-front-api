@@ -1,23 +1,18 @@
-import { Spin, List } from 'antd';
+import { List } from 'antd';
 
 import EventsListItem from './EventsListItem';
-import useWebSocket from '../../helpers/useWebSocket';
 
-function EventsList() {
-  const events = useWebSocket({
-    type: 'getLiveEvents',
-    primaryMarkets: false,
-  });
+function EventsList({ dataSource, eventType }) {
   const renderEvent = event => <EventsListItem key={event.eventId} data={event} />;
-
-  if (!events) {
-    return <Spin />;
-  }
   return (
-    <List
-      dataSource={events.data}
-      renderItem={renderEvent}
-    />
+    <div>
+      <h3>{eventType}</h3>
+      <List
+        dataSource={dataSource}
+        renderItem={renderEvent}
+      />
+    </div>
+
   );
 }
 
