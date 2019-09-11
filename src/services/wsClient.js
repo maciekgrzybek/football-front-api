@@ -2,6 +2,7 @@ class WebSocketClass {
   constructor(url = 'ws://localhost:8889') {
     this.client = null;
     this.url = url;
+    this.outcomes = [];
 
     this.init();
 
@@ -13,40 +14,42 @@ class WebSocketClass {
     this.client = new WebSocket(this.url);
   }
 
-  handleMessage() {
-    return new Promise((resolve, reject) => {
-      this.client.addEventListener('message', function _listener(message) {
+  handleResponse(id, type) {
+    return new Promise((resolve) => {
+      const messageHandler = (message) => {
         const parsedData = JSON.parse(message.data);
         switch (parsedData.type) {
           case 'INIT':
             break;
-          default:
-            this.data = JSON.parse(message.data);
-            resolve(this.data);
+          case 'LIVE_EVENTS_DATA':
+            resolve(parsedData);
             break;
+          default:
+            if (parsedData.data[`${type}Id`] === id) {
+              this.client.removeEventListener('message', messageHandler);
+              resolve(parsedData);
+            }
         }
-      });
-      this.client.addEventListener('error', (error) => {
-        reject(error);
-      });
+      };
+      this.client.addEventListener('message', messageHandler);
     });
   }
 
   getEvent(key) {
     this.client.send(JSON.stringify({ type: 'getEvent', id: key }));
-    return this.handleMessage();
+    return this.handleResponse();
   }
   getEvents() {
     this.client.send(JSON.stringify({ type: 'getLiveEvents' }));
-    return this.handleMessage();
+    return this.handleResponse();
   }
   getMarket(key) {
     this.client.send(JSON.stringify({ type: 'getMarket', id: key }));
-    return this.handleMessage();
+    return this.handleResponse();
   }
   getOutcome(key) {
     this.client.send(JSON.stringify({ type: 'getOutcome', id: key }));
-    return this.handleMessage();
+    return this.handleResponse(key, 'outcome');
   }
 }
 
