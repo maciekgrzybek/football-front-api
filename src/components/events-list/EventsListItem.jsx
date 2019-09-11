@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { List, Button } from 'antd';
 import PropTypes from 'prop-types';
 
-import Modal from '../modal/Modal';
-import Outcome from '../outcome/Outcome';
+import MarketModal from '../market-modal/MarketModal';
 import wsClient from '../../services/wsClient';
 
 
@@ -28,12 +27,8 @@ function EventsListItem({ data }) {
     fetchMarket();
   }
 
-  function renderOutcomes() {
-    return outcomes.map((item) => {
-      return (
-        <Outcome key={item.data.outcomeId + item.data.marketId} outcomeData={item.data.price} />
-      );
-    });
+  function handleModalClose() {
+    setModalOpen(false);
   }
 
   return (
@@ -42,9 +37,12 @@ function EventsListItem({ data }) {
         {data.name}
       </p>
       <Button type="primary" onClick={handleMarketButtonClick}>See primary market</Button>
-      <Modal visible={modalOpen}>
-        {outcomes ? renderOutcomes() : null}
-      </Modal>
+      <MarketModal
+        visible={modalOpen}
+        market={market}
+        outcomes={outcomes}
+        onCancel={handleModalClose}
+      />
     </List.Item>
   );
 }
