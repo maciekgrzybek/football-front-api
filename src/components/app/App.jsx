@@ -1,9 +1,10 @@
 import React from 'react';
 import 'antd/dist/antd.css';
+import { Link, Router } from '@reach/router'
 
+import HomePage from '../../pages/Homepage';
+import Event from '../../pages/Event';
 import Header from '../header/Header';
-import Main from '../main/Main';
-import EventsListWrapper from '../events-list/EventsListWrapper';
 import { OddsProvider } from '../../contexts/oddsContext';
 
 import './App.css';
@@ -14,9 +15,10 @@ function App() {
     <OddsProvider>
       <div className="page-wrapper">
         <Header />
-        <Main>
-          <EventsListWrapper />
-        </Main>
+        <Router>
+          <HomePage path="/" />
+          <Event path="/event/:eventId" />
+        </Router>
       </div>
     </OddsProvider>
   );

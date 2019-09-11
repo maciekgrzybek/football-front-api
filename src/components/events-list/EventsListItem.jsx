@@ -37,6 +37,9 @@ function EventsListItem({ data }) {
     <List.Item>
       <EventTitle data={data} />
       <Button type="primary" onClick={handleMarketButtonClick}>See primary market</Button>
+      <Link to={`/event/${data.eventId}`}>
+        <Button>More details</Button>
+      </Link>
       <MarketModal
         visible={modalOpen}
         market={market}
