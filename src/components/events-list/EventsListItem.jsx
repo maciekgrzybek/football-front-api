@@ -3,6 +3,7 @@ import { List, Button } from 'antd';
 import PropTypes from 'prop-types';
 
 import MarketModal from '../market-modal/MarketModal';
+import EventTitle from '../event-title/EventTitle';
 import wsClient from '../../services/wsClient';
 
 
@@ -33,9 +34,7 @@ function EventsListItem({ data }) {
 
   return (
     <List.Item>
-      <p>
-        {data.name}
-      </p>
+      <EventTitle data={data} />
       <Button type="primary" onClick={handleMarketButtonClick}>See primary market</Button>
       <MarketModal
         visible={modalOpen}
