@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Spin } from 'antd';
 
 import EventsList from './EventsList';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { List } from 'antd';
 
 import EventsListItem from './EventsListItem';
