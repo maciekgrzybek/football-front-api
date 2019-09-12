@@ -9,7 +9,7 @@ function Outcome({ outcomeData, className }) {
   return (
     <Card className={className}>
       <h4>{outcomeData.name}</h4>
-      <span>{isFractal ? `${num}/${den}` : decimal}</span>
+      <span>{isFractal ? `${num}/${den}` : Math.round(decimal * 1000) / 1000}</span>
     </Card>
   );
 }
