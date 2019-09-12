@@ -1,31 +1,18 @@
-import React, { useContext } from 'react';
-import { Collapse, Button } from 'antd';
+import React from 'react';
+import { Collapse } from 'antd';
 
 import OutcomeList from '../outcome/OutcomeList';
-import { OddsContext } from '../../contexts/oddsContext';
+import MarketHeader from './MarketHeader';
+
 const { Panel } = Collapse;
 
 function MarketsList({ markets }) {
-  const [isFractal, setOddsType] = useContext(OddsContext);
-
-  const Header = ({name}) => {
-    return (
-      <div>
-        <h4>{name}</h4>
-        <Button onClick={(e) => {
-          e.stopPropagation();
-          setOddsType(!isFractal)
-        }}>Change odds type</Button>
-      </div>
-
-    )
-  }
   const renderMarkets = () => {
     return markets
       .map(market => {
         return (
-          <Panel key={market.data.marketId} header={<Header name={market.data.name}/>}>
-            <OutcomeList outcomesIds={market.data.outcomes} />
+          <Panel key={market.data.marketId} header={<MarketHeader name={market.data.name}/>}>
+            <OutcomeList outcomesIds={market.data.outcomes} fullScreen/>
           </Panel>
         )
       })

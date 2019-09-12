@@ -4,7 +4,7 @@ import { navigate } from '@reach/router';
 
 import styles from './Header.module.css';
 
-function Header({ title, subTitle, backIcon = <Icon type="arrow-left" /> }) {
+function Header({ title, subTitle, backIcon = <Icon type="arrow-left" />, extra}) {
   return (
     <PageHeader
       onBack={() => navigate('/')}
@@ -12,6 +12,7 @@ function Header({ title, subTitle, backIcon = <Icon type="arrow-left" /> }) {
       title={title}
       subTitle={subTitle}
       backIcon={backIcon}
+      extra={extra}
     />
   );
 }
