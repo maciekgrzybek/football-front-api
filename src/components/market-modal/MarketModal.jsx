@@ -19,9 +19,7 @@ function MarketModal({ visible, market, outcomes, onCancel }) {
   return (
     <Modal visible={visible} footer={null} onCancel={onCancel}>
       <h3>{market && market.name}</h3>
-      <Button onClick={() => setOddsType(!isFractal)} className={styles['odds-button']}>Change odds type</Button>
-      <div className={styles['market-row']}>
-        {outcomes && renderOutcomes()}
+      <OddsButton className={styles['odds-button']}/>
       </div>
     </Modal>
   );
