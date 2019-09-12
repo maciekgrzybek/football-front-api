@@ -7,6 +7,7 @@ import MarketModal from '../market-modal/MarketModal';
 import EventTitle from '../event-title/EventTitle';
 import wsClient from '../../services/wsClient';
 
+import styles from './styles.module.scss';
 
 function EventsListItem({ data }) {
   const [market, setMarket] = useState(null);
@@ -34,12 +35,21 @@ function EventsListItem({ data }) {
   }
 
   return (
-    <List.Item>
-      <EventTitle data={data} />
-      <Button type="primary" onClick={handleMarketButtonClick}>See primary market</Button>
-      <Link to={`/event/${data.eventId}`}>
-        <Button>More details</Button>
-      </Link>
+    <List.Item className={styles['event-list-item']}>
+      <div>
+        <EventTitle data={data} />
+      </div>
+      <div>
+        <Button
+          type="primary"
+          onClick={handleMarketButtonClick}
+          className={styles['main-button']}>
+            Primary odds
+        </Button>
+        <Link to={`/event/${data.eventId}`}>
+          <Button>More details</Button>
+        </Link>
+      </div>
       <MarketModal
         visible={modalOpen}
         market={market}

@@ -21,7 +21,7 @@ function OutcomeList({ outcomesIds }) {
   const renderOutcomes = () => {
     return outcomes.map(item => {
       return (
-        <Outcome outcomeData={item.data} />
+        <Outcome key={item.data.outcomeId} outcomeData={item.data} />
       )
     })
   }

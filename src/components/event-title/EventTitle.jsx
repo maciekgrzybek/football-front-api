@@ -1,16 +1,31 @@
 import React from 'react';
 
-function EventTitle({ data }) {
+import styles from './styles.module.scss';
+
+function EventScore({ data, showScore = true }) {
   const homeTeam = data.competitors.filter(item => item.position === 'home')[0];
   const awayTeam = data.competitors.filter(item => item.position === 'away')[0];
 
   return (
-    <h2>
-      {homeTeam.name}
-      <span>{data.scores['home']} : {data.scores['away']} </span>
-      {awayTeam.name}
-    </h2>
+    <div className={styles.wrapper}>
+      <div>
+        <h3>
+          {homeTeam.name}
+          <span className={styles['score']}>
+            {data.scores['home']}
+          </span>
+        </h3>
+      </div>
+      <div>
+        <h3>
+          {awayTeam.name}
+          <span className={styles['score']}>
+            {data.scores['away']}
+          </span>
+        </h3>
+      </div>
+    </div>
   );
 }
 
-export default EventTitle;
+export default EventScore;
