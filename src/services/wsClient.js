@@ -38,33 +38,65 @@ class WebSocketClass {
     });
   }
 
+  checkIfReady(callback) {
+    console.log(this.client)
+    switch (this.client.readyState) {
+      case 1:
+        return callback();
+      case 3:
+        throw Error('Websocket is closed. Try to restart.');
+      default:
+        const connectionCheck = setInterval(() => {
+          if (this.client.readyState === 1) {
+            clearInterval(connectionCheck);
+            callback()
+          }
+        }, 10);
+    }
+  }
+
   getEvent(key) {
-    this.client.send(JSON.stringify({ type: 'getEvent', id: key }));
+    this.checkIfReady(() => {
+      this.client.send(JSON.stringify({ type: 'getEvent', id: key }));
+    });
     return this.handleResponse(key, 'event');
+
   }
   getEvents() {
-    this.client.send(JSON.stringify({ type: 'getLiveEvents' }));
+    this.checkIfReady(() => {
+      console.log('e?')
+      this.client.send(JSON.stringify({ type: 'getLiveEvents' }));
+    });
     return this.handleResponse();
   }
   getMarket(key) {
-    this.client.send(JSON.stringify({ type: 'getMarket', id: key }));
+    this.checkIfReady(() => {
+      this.client.send(JSON.stringify({ type: 'getMarket', id: key }));
+    });
     return this.handleResponse(key, 'market');
   }
   getMarkets(keys) {
-    return Promise.all(
-      keys.map((market) => {
-        return this.getMarket(market);
-      }));
+    return this.checkIfReady(() => {
+      return Promise.all(
+        keys.map((market) => {
+          return this.getMarket(market);
+        }));
+    });
+
   }
   getOutcome(key) {
-    this.client.send(JSON.stringify({ type: 'getOutcome', id: key }));
+    this.checkIfReady(() => {
+      this.client.send(JSON.stringify({ type: 'getOutcome', id: key }));
+    });
     return this.handleResponse(key, 'outcome');
   }
   getOutcomes(keys) {
-    return Promise.all(
-      keys.map((outcome) => {
-        return this.getOutcome(outcome);
-      }));
+    return this.checkIfReady(() => {
+      return Promise.all(
+        keys.map((outcome) => {
+          return this.getOutcome(outcome);
+        }));
+    })
   }
 }
 
