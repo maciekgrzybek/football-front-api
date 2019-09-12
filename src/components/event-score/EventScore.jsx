@@ -30,7 +30,7 @@ function EventScore({ data }) {
 }
 
 EventScore.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.object,
 };
 
 export default EventScore;

@@ -11,7 +11,6 @@ function EventsListWrapper() {
   useEffect(() => {
     const fetchData = async() => {
       const data = await wsClient.getEvents();
-      console.log(data)
       setEvents(data.data.filter(filterDisplayable));
     };
     fetchData();
