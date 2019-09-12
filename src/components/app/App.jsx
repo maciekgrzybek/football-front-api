@@ -8,7 +8,6 @@ import { OddsProvider } from '../../contexts/oddsContext';
 
 import styles from './styles.module.scss';
 
-
 function App() {
   return (
     <OddsProvider>

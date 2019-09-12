@@ -18,14 +18,10 @@ function Event({ eventId }) {
   useEffect(() => {
     const fetchData = async() => {
       const event = await wsClient.getEvent(Number(eventId));
-      const marketsData = Promise.all(
-        event.data.markets.map((market) => {
-          return wsClient.getMarket(market);
-        }))
-        .then(data => data.filter(filterDisplayable).sort(sortMarkets));
-      
-      setMarkets(await marketsData);
-      setEventData(event.data)
+      const marketsData = await wsClient.getMarkets(event.data.markets);
+      console.log(marketsData)
+      setMarkets(marketsData.filter(filterDisplayable).sort(sortMarkets));
+      setEventData(event.data);
     };
     fetchData();
   }, [eventId]);

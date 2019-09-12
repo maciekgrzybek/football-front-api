@@ -4,11 +4,17 @@ import { Spin } from 'antd';
 import EventsList from './EventsList';
 import sortEvents from '../../helpers/sortEvents';
 import wsClient from '../../services/wsClient';
+import filterDisplayable from '../../helpers/filterDisplayable';
 
 function EventsListWrapper() {
   const [events, setEvents] = useState(null);
   useEffect(() => {
-    wsClient.getEvents().then(data => setEvents(data));
+    const fetchData = async() => {
+      const data = await wsClient.getEvents();
+      console.log(data)
+      setEvents(data.data.filter(filterDisplayable));
+    };
+    fetchData();
   }, []);
 
   const renederLists = () => {

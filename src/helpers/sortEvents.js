@@ -1,7 +1,7 @@
 function sortEvents(events) {
   const sortedEvent = {};
   if (events) {
-    events.data
+    events
       .sort((item) => {
         return !item.linkedEventTypeName ? 1 : -1;
       })
