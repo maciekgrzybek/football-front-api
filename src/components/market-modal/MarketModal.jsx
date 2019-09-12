@@ -7,12 +7,13 @@ import OddsButton from '../odds-button/OddsButton';
 import styles from './styles.module.scss';
 
 function MarketModal({ visible, market, outcomes, onCancel }) {
+  console.log(market)
   return (
     <Modal visible={visible} footer={null} onCancel={onCancel}>
       <h3>{market && market.name}</h3>
       <OddsButton className={styles['odds-button']}/>
       <div className={styles['outcome-row']}>
-        {outcomes && <OutcomeList outcomesIds={market.outcomes} />}
+        {market && <OutcomeList outcomesIds={market.outcomes} />}
       </div>
     </Modal>
   );

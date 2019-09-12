@@ -10,16 +10,15 @@ function OutcomeList({ outcomesIds, fullScreen = false }) {
   const [outcomes, setOutcomes] = useState(null);
   useEffect(() => {
     const fetchData = async() => {
-      const outcomesData = Promise.all(
-        outcomesIds.map((market) => {
-          return wsClient.getOutcome(market);
-        }))
-      
-      setOutcomes(await outcomesData);
+      const outcomesData = await wsClient.getOutcomes(outcomesIds);
+      setOutcomes(outcomesData);
     };
     fetchData();
   }, [outcomesIds]);
-  const outcomeClass = fullScreen ? `${styles['outcome-card']} ${styles['outcome-card-full-screen']}` : styles['outcome-card'];
+
+  const outcomeClass = fullScreen
+    ? `${styles['outcome-card']} ${styles['outcome-card-full-screen']}`
+    : styles['outcome-card'];
 
   const renderOutcomes = () => {
     return outcomes.map(item => {
@@ -35,7 +34,6 @@ function OutcomeList({ outcomesIds, fullScreen = false }) {
     <div className={`${styles['outcome-row']}`}>
       {renderOutcomes()}
     </div>
-
   );
 }
 
