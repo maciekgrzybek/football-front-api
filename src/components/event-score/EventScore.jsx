@@ -2,9 +2,9 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 
-function EventScore({ data, showScore }) {
-  const homeTeam = data.competitors.filter(item => item.position === 'home')[0];
-  const awayTeam = data.competitors.filter(item => item.position === 'away')[0];
+function EventScore({ data }) {
+  const homeTeam = data.competitors.find(item => item.position === 'home');
+  const awayTeam = data.competitors.find(item => item.position === 'away');
 
   return (
     <div className={styles.wrapper}>
