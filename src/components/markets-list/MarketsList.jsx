@@ -1,5 +1,6 @@
 import React from 'react';
 import { Collapse } from 'antd';
+import PropTypes from 'prop-types';
 
 import OutcomeList from '../outcome/OutcomeList';
 import MarketHeader from './MarketHeader';
@@ -24,5 +25,9 @@ function MarketsList({ markets }) {
     </Collapse>
   );
 }
+
+MarketsList.propTypes = {
+  markets: PropTypes.array,
+};
 
 export default MarketsList;

@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import OddsButton from '../odds-button/OddsButton';
 import styles from './styles.module.scss';
 
-function MarketHeader({name}) {
+function MarketHeader({ name }) {
   return (
     <div className={styles['market-header']}>
       <div>
@@ -15,5 +16,9 @@ function MarketHeader({name}) {
     </div>
   );
 }
+
+MarketHeader.propTypes = {
+  name: PropTypes.string,
+};
 
 export default MarketHeader;

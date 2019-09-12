@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'antd';
 
 import { OddsContext } from '../../contexts/oddsContext';
@@ -18,5 +19,9 @@ function OddsButton({ className }) {
     </Button>
   );
 }
+
+OddsButton.propTypes = {
+  className: PropTypes.string,
+};
 
 export default OddsButton;

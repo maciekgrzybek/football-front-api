@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 
 import Outcome from './Outcome';
@@ -37,5 +38,10 @@ function OutcomeList({ outcomesIds, fullScreen = false }) {
     </div>
   );
 }
+
+OutcomeList.propTypes = {
+  outcomesIds: PropTypes.array,
+  fullScreen: PropTypes.bool,
+};
 
 export default OutcomeList;

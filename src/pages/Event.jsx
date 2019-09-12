@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Spin } from 'antd';
 
 import EventScore from '../components/event-score/EventScore';
@@ -45,5 +46,9 @@ function Event({ eventId }) {
     </>
   );
 }
+
+Event.propTypes = {
+  eventId: PropTypes.string,
+};
 
 export default Event;

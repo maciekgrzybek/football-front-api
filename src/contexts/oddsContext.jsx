@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 const OddsContext = createContext(['', () => {}]);
 
@@ -9,6 +10,10 @@ const OddsProvider = ({ children }) => {
       {children}
     </OddsContext.Provider>
   );
+};
+
+OddsContext.propTypes = {
+  children: PropTypes.element,
 };
 
 export { OddsContext, OddsProvider };

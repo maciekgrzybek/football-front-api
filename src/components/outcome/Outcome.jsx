@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Card } from 'antd';
 
 import { OddsContext } from '../../contexts/oddsContext';
@@ -13,5 +14,10 @@ function Outcome({ outcomeData, className }) {
     </Card>
   );
 }
+
+Outcome.propTypes = {
+  outcomeData: PropTypes.object,
+  className: PropTypes.string,
+};
 
 export default Outcome;

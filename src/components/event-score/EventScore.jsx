@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import styles from './styles.module.scss';
 
@@ -27,5 +28,9 @@ function EventScore({ data }) {
     </div>
   );
 }
+
+EventScore.propTypes = {
+  data: PropTypes.array,
+};
 
 export default EventScore;

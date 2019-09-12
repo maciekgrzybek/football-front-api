@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List } from 'antd';
 
 import EventsListItem from './EventsListItem';
@@ -24,5 +25,10 @@ function EventsList({ dataSource, eventType }) {
 
   );
 }
+
+EventsList.propTypes = {
+  dataSource: PropTypes.array,
+  eventType: PropTypes.string,
+};
 
 export default EventsList;

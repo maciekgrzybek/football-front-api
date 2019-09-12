@@ -6,7 +6,7 @@ import OutcomeList from '../outcome/OutcomeList';
 import OddsButton from '../odds-button/OddsButton';
 import styles from './styles.module.scss';
 
-function MarketModal({ visible, market, outcomes, onCancel }) {
+function MarketModal({ visible, market, onCancel }) {
   return (
     <Modal visible={visible} footer={null} onCancel={onCancel}>
       <h3>{market && market.name}</h3>
@@ -24,7 +24,6 @@ MarketModal.defaultProps = {
 MarketModal.propTypes = {
   visible: PropTypes.bool,
   market: PropTypes.object,
-  outcomes: PropTypes.array,
   onCancel: PropTypes.func,
 };
 
