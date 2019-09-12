@@ -1,29 +1,28 @@
-import { useContext } from 'react';
-import { Modal, Row, Col, Button } from 'antd';
+import React, { useContext } from 'react';
+import { Modal, Button } from 'antd';
 import PropTypes from 'prop-types';
+
 
 import Outcome from '../outcome/Outcome';
 import { OddsContext } from '../../contexts/oddsContext';
+import styles from './styles.module.scss';
 
 function MarketModal({ visible, market, outcomes, onCancel }) {
   const [isFractal, setOddsType] = useContext(OddsContext);
   function renderOutcomes() {
     return outcomes.map((item) => {
       return (
-        <Col key={item.data.outcomeId}>
-          <Outcome outcomeData={item.data} />
-        </Col>
-
+        <Outcome key={item.data.outcomeId} outcomeData={item.data} className={styles['market-card']} />
       );
     });
   }
   return (
     <Modal visible={visible} footer={null} onCancel={onCancel}>
       <h3>{market && market.name}</h3>
-      <Button onClick={() => setOddsType(!isFractal)}>Change odds type</Button>
-      <Row>
+      <Button onClick={() => setOddsType(!isFractal)} className={styles['odds-button']}>Change odds type</Button>
+      <div className={styles['market-row']}>
         {outcomes && renderOutcomes()}
-      </Row>
+      </div>
     </Modal>
   );
 }
