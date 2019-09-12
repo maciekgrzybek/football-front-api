@@ -4,7 +4,7 @@ import { List, Button } from 'antd';
 import PropTypes from 'prop-types';
 
 import MarketModal from '../market-modal/MarketModal';
-import EventTitle from '../event-title/EventTitle';
+import EventScore from '../event-score/EventScore';
 import wsClient from '../../services/wsClient';
 
 import styles from './styles.module.scss';
@@ -37,7 +37,7 @@ function EventsListItem({ data }) {
   return (
     <List.Item className={styles['event-list-item']}>
       <div>
-        <EventTitle data={data} />
+        <EventScore data={data} />
       </div>
       <div>
         <Button
