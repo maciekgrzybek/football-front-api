@@ -11,17 +11,17 @@ import styles from './styles.module.scss';
 
 function EventsListItem({ data }) {
   const [market, setMarket] = useState(null);
-  const [outcomes, setOutcomes] = useState(null);
+  // const [outcomes, setOutcomes] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   async function fetchMarket() {
     const event = await wsClient.getEvent(data.eventId);
     const marketData = await wsClient.getMarket(event.data.markets[0]);
-    const outComesData = Promise.all(
-      marketData.data.outcomes.map((outcome) => {
-        return wsClient.getOutcome(outcome);
-      }));
-    setOutcomes(await outComesData);
+    // const outComesData = Promise.all(
+    //   marketData.data.outcomes.map((outcome) => {
+    //     return wsClient.getOutcome(outcome);
+    //   }));
+    // setOutcomes(await outComesData);
     setMarket(marketData.data);
   }
 
@@ -50,12 +50,22 @@ function EventsListItem({ data }) {
           <Button>More details</Button>
         </Link>
       </div>
-      <MarketModal
+      {
+        market && (
+          <MarketModal
+          visible={modalOpen}
+          market={market}
+          outcomes={market.outcomes}
+          onCancel={handleModalClose}
+        />
+        )
+      }
+      {/* <MarketModal
         visible={modalOpen}
         market={market}
-        outcomes={outcomes}
+        outcomes={market.outcomes}
         onCancel={handleModalClose}
-      />
+      /> */}
     </List.Item>
   );
 }

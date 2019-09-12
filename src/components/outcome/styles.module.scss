@@ -1,3 +1,23 @@
+$gutter: 12px;
+
+.outcome-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 .outcome-card {
-  border: 1px solid red;
+  width: calc(50% - #{$gutter});
+  margin-right: $gutter;
+  margin-bottom: $gutter;
+}
+
+.outcome-card-full-screen {
+  @media screen and (min-width: 768px) {
+    width: calc((100% / 3) - #{$gutter});
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: calc(20% - #{$gutter});
+  }
 }

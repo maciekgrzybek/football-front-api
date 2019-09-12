@@ -4,7 +4,9 @@ import { Spin } from 'antd';
 import Outcome from './Outcome';
 import wsClient from '../../services/wsClient';
 
-function OutcomeList({ outcomesIds }) {
+import styles from './styles.module.scss';
+
+function OutcomeList({ outcomesIds, fullScreen = false }) {
   const [outcomes, setOutcomes] = useState(null);
   useEffect(() => {
     const fetchData = async() => {
@@ -17,11 +19,12 @@ function OutcomeList({ outcomesIds }) {
     };
     fetchData();
   }, [outcomesIds]);
+  const outcomeClass = fullScreen ? `${styles['outcome-card']} ${styles['outcome-card-full-screen']}` : styles['outcome-card'];
 
   const renderOutcomes = () => {
     return outcomes.map(item => {
       return (
-        <Outcome key={item.data.outcomeId} outcomeData={item.data} />
+        <Outcome key={item.data.outcomeId} outcomeData={item.data} className={outcomeClass} />
       )
     })
   }
@@ -29,7 +32,10 @@ function OutcomeList({ outcomesIds }) {
     return <Spin />;
   }
   return (
-    renderOutcomes()
+    <div className={`${styles['outcome-row']}`}>
+      {renderOutcomes()}
+    </div>
+
   );
 }
 
