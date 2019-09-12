@@ -51,6 +51,12 @@ class WebSocketClass {
     this.client.send(JSON.stringify({ type: 'getOutcome', id: key }));
     return this.handleResponse(key, 'outcome');
   }
+  getMarkets(keys) {
+    return Promise.all(
+      keys.map((market) => {
+        return wsClient.getMarket(market);
+      }));
+  }
 }
 
 const wsClient = new WebSocketClass();
