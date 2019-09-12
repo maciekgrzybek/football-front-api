@@ -39,20 +39,12 @@ class WebSocketClass {
   }
 
   checkIfReady(callback) {
-    console.log(this.client)
-    switch (this.client.readyState) {
-      case 1:
-        return callback();
-      case 3:
-        throw Error('Websocket is closed. Try to restart.');
-      default:
-        const connectionCheck = setInterval(() => {
-          if (this.client.readyState === 1) {
-            clearInterval(connectionCheck);
-            callback()
-          }
-        }, 10);
-    }
+    const connectionCheck = setInterval(() => {
+      if (this.client.readyState === 1) {
+        clearInterval(connectionCheck);
+        callback()
+      }
+    }, 10);
   }
 
   getEvent(key) {
