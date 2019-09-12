@@ -1,11 +1,17 @@
-import { PageHeader } from 'antd';
+import React from 'react';
+import { PageHeader, Icon } from 'antd';
+import { navigate } from '@reach/router';
 
-function Header() {
+import styles from './Header.module.css';
+
+function Header({ title, subTitle, backIcon = <Icon type="arrow-left" /> }) {
   return (
     <PageHeader
-      title="Live Footbal Results"
-      subTitle="Subtitle here"
-      backIcon={false}
+      onBack={() => navigate('/')}
+      className={styles.header}
+      title={title}
+      subTitle={subTitle}
+      backIcon={backIcon}
     />
   );
 }

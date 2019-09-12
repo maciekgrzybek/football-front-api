@@ -37,7 +37,7 @@ class WebSocketClass {
 
   getEvent(key) {
     this.client.send(JSON.stringify({ type: 'getEvent', id: key }));
-    return this.handleResponse();
+    return this.handleResponse(key, 'event');
   }
   getEvents() {
     this.client.send(JSON.stringify({ type: 'getLiveEvents' }));
@@ -45,7 +45,7 @@ class WebSocketClass {
   }
   getMarket(key) {
     this.client.send(JSON.stringify({ type: 'getMarket', id: key }));
-    return this.handleResponse();
+    return this.handleResponse(key, 'market');
   }
   getOutcome(key) {
     this.client.send(JSON.stringify({ type: 'getOutcome', id: key }));

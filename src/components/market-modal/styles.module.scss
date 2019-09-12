@@ -1,0 +1,14 @@
+.market-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.market-card {
+  width: 48%;
+  margin-bottom: 12px;
+}
+
+.odds-button {
+  margin-bottom: 15px;
+}
