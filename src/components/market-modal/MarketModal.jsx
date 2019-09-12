@@ -7,7 +7,6 @@ import OddsButton from '../odds-button/OddsButton';
 import styles from './styles.module.scss';
 
 function MarketModal({ visible, market, outcomes, onCancel }) {
-  console.log(market)
   return (
     <Modal visible={visible} footer={null} onCancel={onCancel}>
       <h3>{market && market.name}</h3>

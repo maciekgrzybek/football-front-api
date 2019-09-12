@@ -3,6 +3,7 @@ import { Spin } from 'antd';
 
 import Outcome from './Outcome';
 import wsClient from '../../services/wsClient';
+import filterDisplayable from '../../helpers/filterDisplayable';
 
 import styles from './styles.module.scss';
 
@@ -11,7 +12,7 @@ function OutcomeList({ outcomesIds, fullScreen = false }) {
   useEffect(() => {
     const fetchData = async() => {
       const outcomesData = await wsClient.getOutcomes(outcomesIds);
-      setOutcomes(outcomesData);
+      setOutcomes(outcomesData.filter(filterDisplayable));
     };
     fetchData();
   }, [outcomesIds]);
