@@ -19,7 +19,6 @@ function Event({ eventId }) {
     const fetchData = async() => {
       const event = await wsClient.getEvent(Number(eventId));
       const marketsData = await wsClient.getMarkets(event.data.markets);
-      console.log(marketsData)
       setMarkets(marketsData.filter(filterDisplayable).sort(sortMarkets));
       setEventData(event.data);
     };
