@@ -30,7 +30,7 @@ function OutcomeList({ outcomesIds, fullScreen = false }) {
     })
   }
   if (!outcomes) {
-    return <Spin />;
+    return <Spin size="large"/>;
   }
   return (
     <div className={`${styles['outcome-row']}`}>

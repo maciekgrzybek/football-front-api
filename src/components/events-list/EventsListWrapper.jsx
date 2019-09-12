@@ -26,7 +26,7 @@ function EventsListWrapper() {
   };
 
   if (!events) {
-    return <Spin />;
+    return <Spin size="large"/>;
   }
   return renederLists();
 }

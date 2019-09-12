@@ -27,7 +27,7 @@ function Event({ eventId }) {
   }, [eventId]);
 
   if (!eventData) {
-    return <Spin />;
+    return <Spin size="large"/>;
   }
   return (
     <>
