@@ -8,6 +8,7 @@ function nth(d) {
   }
 }
 function getDate(date) {
+  const newDate = new Date(date)
   const months = [
     'January',
     'February',
@@ -31,7 +32,6 @@ function getDate(date) {
     'Friday',
     'Saturday',
   ];
-  const newDate = new Date(date)
   const dayOfMonth = newDate.getDate();
   const day = newDate.getDay();
   const month = months[newDate.getMonth() - 1];
