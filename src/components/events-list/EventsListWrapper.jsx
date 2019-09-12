@@ -8,7 +8,11 @@ import wsClient from '../../services/wsClient';
 function EventsListWrapper() {
   const [events, setEvents] = useState(null);
   useEffect(() => {
-    wsClient.getEvents().then(data => setEvents(data));
+    const fetchData = async() => {
+      const data = await wsClient.getEvents();
+      setEvents(data)
+    };
+    fetchData();
   }, []);
 
   const renederLists = () => {
