@@ -4,7 +4,7 @@ import { Card } from 'antd';
 import { OddsContext } from '../../contexts/oddsContext';
 
 function Outcome({ outcomeData, className }) {
-  const [isFractal, setValue] = useContext(OddsContext);
+  const [isFractal] = useContext(OddsContext);
   const { num, den, decimal } = outcomeData.price;
   return (
     <Card className={className}>

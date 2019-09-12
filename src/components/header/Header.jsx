@@ -2,17 +2,15 @@ import React from 'react';
 import { PageHeader, Icon } from 'antd';
 import { navigate } from '@reach/router';
 
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
-function Header({ title, subTitle, backIcon = <Icon type="arrow-left" />, extra}) {
+function Header({ backIcon = <Icon type="arrow-left" />, ...rest }) {
   return (
     <PageHeader
       onBack={() => navigate('/')}
       className={styles.header}
-      title={title}
-      subTitle={subTitle}
       backIcon={backIcon}
-      extra={extra}
+      {...rest}
     />
   );
 }

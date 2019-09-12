@@ -9,6 +9,9 @@ class WebSocketClass {
     this.getEvent = this.getEvent.bind(this);
     this.getEvents = this.getEvents.bind(this);
     this.getMarket = this.getMarket.bind(this);
+    this.getMarkets = this.getMarkets.bind(this);
+    this.getOutcomes = this.getOutcomes.bind(this);
+    
   }
   init() {
     this.client = new WebSocket(this.url);
@@ -47,9 +50,21 @@ class WebSocketClass {
     this.client.send(JSON.stringify({ type: 'getMarket', id: key }));
     return this.handleResponse(key, 'market');
   }
+  getMarkets(keys) {
+    return Promise.all(
+      keys.map((market) => {
+        return this.getMarket(market);
+      }));
+  }
   getOutcome(key) {
     this.client.send(JSON.stringify({ type: 'getOutcome', id: key }));
     return this.handleResponse(key, 'outcome');
+  }
+  getOutcomes(keys) {
+    return Promise.all(
+      keys.map((outcome) => {
+        return this.getOutcome(outcome);
+      }));
   }
 }
 
